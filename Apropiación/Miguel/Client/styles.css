@@ -1,0 +1,213 @@
+:root{
+  --bg:#080b0f;
+  --surface:#131a20;
+  --surface-soft:#1d252d;
+  --surface-softest:#232d37;
+  --text:#e6eef6;
+  --muted:#7c8fa3;
+  --accent:#ff8a01;
+  --accent-soft:#6e4c1f;
+  --danger:#ff4f4f;
+  --success:#42c490;
+  --border:#2f3940;
+  --radius:12px;
+  --shadow:0 24px 80px rgba(0,0,0,0.35);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html, body{
+  min-height:100%;
+  margin:0;
+  font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(255,138,1,0.12) 0%, transparent 24%),
+    radial-gradient(circle at bottom right, rgba(66,196,144,0.08) 0%, transparent 32%),
+    linear-gradient(180deg, #091014 0%, #06090c 100%);
+  color:var(--text);
+}
+
+body{
+  padding:32px 16px;
+}
+
+.task-form{
+  max-width:580px;
+  margin:0 auto 28px;
+  padding:24px 26px;
+  background:rgba(19,26,32,0.96);
+  border:1px solid rgba(255,138,1,0.16);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  text-align:center;
+}
+
+.task-form label{
+  display:block;
+  margin-bottom:12px;
+  font-size:1rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--accent);
+}
+
+.form-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+input[type="text"], .task-input{
+  width:320px;
+  max-width:100%;
+  padding:14px 16px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.04);
+  color:var(--text);
+  font-size:0.98rem;
+  outline:none;
+  transition:box-shadow .2s ease, border-color .2s ease, background .2s ease;
+}
+
+input[type="text"]::placeholder{
+  color:rgba(255,255,255,0.4);
+}
+
+.task-input:focus{
+  border-color:rgba(255,138,1,0.9);
+  box-shadow:0 0 0 4px rgba(255,138,1,0.12);
+  background:rgba(255,255,255,0.06);
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:120px;
+  padding:12px 18px;
+  border-radius:999px;
+  border:1px solid rgba(255,138,1,0.18);
+  background:linear-gradient(135deg, #ff9f2d 0%, #ff7f0a 100%);
+  color:#081014;
+  font-weight:700;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 18px 40px rgba(255,138,1,0.22);
+}
+
+.error-row{
+  min-height:22px;
+  margin-top:14px;
+}
+
+.error-message{
+  display:none;
+  color:var(--danger);
+  font-size:0.95rem;
+  font-weight:600;
+  letter-spacing:0.02em;
+}
+
+.error-message.visible{
+  display:block;
+}
+
+input.error, .task-input.error{
+  border-color:var(--danger) !important;
+  box-shadow:0 0 0 4px rgba(255,79,79,0.14) !important;
+}
+
+table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  margin-top:20px;
+  background:rgba(19,26,32,0.94);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,0.25);
+}
+
+thead th{
+  text-align:left;
+  padding:14px 16px;
+  color:rgba(255,255,255,0.75);
+  font-size:0.85rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  background:rgba(255,255,255,0.03);
+}
+
+tbody tr{
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+
+tbody td{
+  padding:16px 16px;
+  vertical-align:middle;
+  color:var(--text);
+  font-size:0.95rem;
+}
+
+.task-title{
+  font-size:1rem;
+  color:#eef5ff;
+}
+
+.task-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:flex-start;
+}
+
+.status-button{
+  border:none;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.08);
+  color:var(--text);
+  cursor:pointer;
+  transition:background .2s ease, transform .15s ease;
+}
+
+.status-button:hover{
+  background:rgba(255,255,255,0.12);
+  transform:translateY(-1px);
+}
+
+.status-button.in-progress{
+  color:#f9b24a;
+  background:rgba(255,138,1,0.12);
+}
+
+.status-button.completed{
+  color:#42c490;
+  background:rgba(66,196,144,0.12);
+}
+
+.delete-button{
+  background:rgba(255,79,79,0.1);
+  border:1px solid rgba(255,79,79,0.18);
+  color:var(--danger);
+  padding:8px 12px;
+  border-radius:999px;
+}
+
+.empty-state{
+  color:rgba(255,255,255,0.6);
+  padding:20px;
+  text-align:center;
+}

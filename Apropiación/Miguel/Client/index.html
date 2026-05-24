@@ -1,0 +1,45 @@
+<!--
+1. Estructura HTML mínima
+Construyan una interfaz sencilla con:
+• Un campo de texto para escribir la tarea.
+• Un botón para guardar.
+• Una lista donde se muestren las tareas.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía 11</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <form action="" novalidate class="task-form">
+        <label for="taskInput">Ingrese la tarea:</label>
+        <div class="form-row">
+            <input type="text" id="taskInput" name="taskName" required>
+            <button type="button" id="saveButton">Guardar</button>
+        </div>
+        <div class="error-row"></div>
+    </form>
+
+    <table>
+        <thead id="taskTableHead">
+            <tr>
+                <th id="taskTableTitleName">Tarea</th>
+                <th id="taskTableTitleStatus" colspan="2">Estado</th>
+            </tr>
+        </thead>
+        <tbody id="taskTableBody">
+            <!-- Las tareas se agregarán aquí dinámicamente -->
+
+            <tr id="emptyState">
+                <td colspan="3"> No hay tareas registradas en este momento </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
