@@ -1,4 +1,5 @@
 import { dom } from "./appContext.js";
+import { updateTask } from "./data.js";
 
 // Generación de una fila en la tabla de tareas
 export const createTaskRow = (task) => {
@@ -10,7 +11,28 @@ export const createTaskRow = (task) => {
     row.appendChild(nameCell);
 
     const statusCell = document.createElement("td");
-    statusCell.textContent = task.completed ? "Completada" : "En progreso";
+    const statusButton = document.createElement("button");
+    statusButton.type = "button";
+    statusButton.textContent = task.completed ? "Completada" : "En progreso";
+    statusButton.addEventListener("click", async () => {
+        const message = task.completed
+            ? "¿Marcar esta tarea como \"En progreso\"?"
+            : "¿Marcar esta tarea como \"Completada\"?";
+
+        if (!window.confirm(message)) {
+            return;
+        }
+
+        const updatedTask = await updateTask(task.id, {
+            ...task,
+            completed: !task.completed
+        });
+        if (updatedTask) {
+            task.completed = updatedTask.completed;
+            statusButton.textContent = task.completed ? "Completada" : "En progreso";
+        }
+    });
+    statusCell.appendChild(statusButton);
     row.appendChild(statusCell);
 
     return row;
