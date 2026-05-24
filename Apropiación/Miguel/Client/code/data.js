@@ -12,8 +12,9 @@ export const fetchTasks = async () => {
         if (!response.ok) {
             throw new Error(`Error al obtener tareas: ${response.statusText}`);
         }
-        const tasks = await response.json();
-        return tasks;
+        const data = await response.json();
+        // Si la respuesta es un objeto con propiedad 'tasks', retornar ese array
+        return Array.isArray(data) ? data : (data.tasks || FALLBACK_TASKS);
     } catch (error) {
         console.error(error);
         return FALLBACK_TASKS;

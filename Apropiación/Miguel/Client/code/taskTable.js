@@ -1,3 +1,5 @@
+import { dom } from "./appContext.js";
+
 // Generación de una fila en la tabla de tareas
 export const createTaskRow = (task) => {
     const row = document.createElement("tr");
@@ -22,6 +24,7 @@ export const renderTaskTable = (tasks) => {
     dom.taskTableBody.innerHTML = "";
     if (tasks.length === 0) {
         dom.emptyStateRow.style.display = "table-row";
+        dom.taskTableBody.appendChild(dom.emptyStateRow);
     } else {
         dom.emptyStateRow.style.display = "none";
         tasks.forEach(task => {
