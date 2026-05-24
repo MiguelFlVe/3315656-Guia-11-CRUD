@@ -1,5 +1,5 @@
 import { dom } from "./appContext.js";
-import { updateTask } from "./data.js";
+import { updateTask, deleteTask } from "./data.js";
 
 // Generación de una fila en la tabla de tareas
 export const createTaskRow = (task) => {
@@ -34,6 +34,27 @@ export const createTaskRow = (task) => {
     });
     statusCell.appendChild(statusButton);
     row.appendChild(statusCell);
+
+    const actionCell = document.createElement("td");
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.textContent = "Eliminar";
+    deleteButton.addEventListener("click", async () => {
+        if (!window.confirm("¿Eliminar esta tarea?")) {
+            return;
+        }
+
+        const deleted = await deleteTask(task.id);
+        if (deleted) {
+            row.remove();
+            if (dom.taskTableBody.children.length === 0) {
+                dom.taskTableBody.appendChild(dom.emptyStateRow);
+                dom.emptyStateRow.style.display = "table-row";
+            }
+        }
+    });
+    actionCell.appendChild(deleteButton);
+    row.appendChild(actionCell);
 
     return row;
 }

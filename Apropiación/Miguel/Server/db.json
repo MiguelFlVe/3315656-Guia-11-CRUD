@@ -2,12 +2,6 @@
   "tasks": [
     {
       "userId": 1,
-      "id": "1",
-      "title": "delectus aut autem",
-      "completed": false
-    },
-    {
-      "userId": 1,
       "id": "2",
       "title": "quis ut nam facilis et officia qui",
       "completed": false
@@ -1199,56 +1193,6 @@
       "id": "200",
       "title": "ipsam aperiam voluptates qui",
       "completed": false
-    },
-    {
-      "title": "Hola",
-      "completed": false,
-      "id": "h_ld_HOg0-A"
-    },
-    {
-      "title": "Tarea de prueba para comprobar que las tareas nuevas queden al inicio de la tabla",
-      "completed": false,
-      "id": "Qcm7RBTRgq8"
-    },
-    {
-      "title": "Tarea de prueba para comprobar que las tareas nuevas queden al inicio de la tabla",
-      "completed": false,
-      "id": "ecHIkWuejeI"
-    },
-    {
-      "title": "Prueba de duplicados",
-      "completed": false,
-      "id": "otEFCDAaK2M"
-    },
-    {
-      "title": "Prueba de duplicados",
-      "completed": false,
-      "id": "EJ0agCWOrW8"
-    },
-    {
-      "title": "Prueba de duplicados 2",
-      "completed": false,
-      "id": "cdvX-YAiYuc"
-    },
-    {
-      "title": "Prueba de duplicados 3",
-      "completed": false,
-      "id": "HCdB6BVa1Yk"
-    },
-    {
-      "title": "Prueba de duplicados 4",
-      "completed": false,
-      "id": "cSvtZA5LwT8"
-    },
-    {
-      "title": "Prueba de duplicados 5",
-      "completed": false,
-      "id": "BYP5E92REQQ"
-    },
-    {
-      "title": "Prueba de duplicados 6",
-      "completed": false,
-      "id": "nf4jMKsU8E0"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
