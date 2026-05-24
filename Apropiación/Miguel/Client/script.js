@@ -4,7 +4,10 @@ import {
     handleSaveTask,
     handleStatusChange,
     handleDeleteTask,
-    fetchTasks
+    fetchTasks,
+    initError,
+    showError,
+    clearError
 } from "./index.js";
 
 // Ejecutar los handlers cuando se carga la página
@@ -14,28 +17,40 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Inicializar la tabla de tareas con los datos del servidor
     initializeTaskTable(tasks);
 
-    // Prevenir envío del formulario para evitar recarga
-    const form = document.querySelector("form");
-    form.addEventListener("submit", (e) => e.preventDefault());
+    // Inicializar sistema de errores y helpers
+    initError(dom.taskInput, dom.saveButton);
 
-    // Manejar clic en el botón Guardar
-    dom.saveButton.addEventListener("click", async () => {
-        const taskTitle = dom.taskInput.value.trim();
+    // Validación y guardado centralizados
+    const handleFormSubmit = async () => {
+        const raw = dom.taskInput.value;
+        const taskTitle = raw.trim();
         if (taskTitle) {
+            clearError(dom.taskInput);
             await handleSaveTask(taskTitle);
             dom.taskInput.value = "";
+        } else {
+            showError(dom.taskInput);
+            dom.taskInput.focus();
         }
+    };
+
+    const form = document.querySelector("form");
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        await handleFormSubmit();
     });
 
-    // Permitir guardar con la tecla Enter
+    dom.saveButton.addEventListener("click", handleFormSubmit);
+
+    // Limpiar estado de error mientras el usuario escribe
+    dom.taskInput.addEventListener('input', () => {
+        if (dom.taskInput.value.trim().length > 0) clearError(dom.taskInput);
+    });
+
     dom.taskInput.addEventListener("keydown", async (e) => {
         if (e.key === "Enter") {
             e.preventDefault();
-            const taskTitle = dom.taskInput.value.trim();
-            if (taskTitle) {
-                await handleSaveTask(taskTitle);
-                dom.taskInput.value = "";
-            }
+            await handleFormSubmit();
         }
     });
 

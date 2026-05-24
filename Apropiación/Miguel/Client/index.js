@@ -21,6 +21,8 @@ import {
 
 import { fetchTasks } from "./code/data.js";
 
+import { initError, showError, clearError } from "./code/error.js";
+
 export {
     IP,
     PORT,
@@ -33,5 +35,8 @@ export {
     handleSaveTask,
     handleStatusChange,
     handleDeleteTask,
-    fetchTasks
+    fetchTasks,
+    initError,
+    showError,
+    clearError
 };

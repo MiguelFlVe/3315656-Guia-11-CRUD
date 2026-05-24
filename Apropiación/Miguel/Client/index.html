@@ -12,12 +12,16 @@ Construyan una interfaz sencilla con:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guía 11</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <form action="" novalidate>
+    <form action="" novalidate class="task-form">
         <label for="taskInput">Ingrese la tarea:</label>
-        <input type="text" id="taskInput" name="taskName" required>
-        <button type="button" id="saveButton">Guardar</button>
+        <div class="form-row">
+            <input type="text" id="taskInput" name="taskName" required>
+            <button type="button" id="saveButton">Guardar</button>
+        </div>
+        <div class="error-row"></div>
     </form>
 
     <table>
