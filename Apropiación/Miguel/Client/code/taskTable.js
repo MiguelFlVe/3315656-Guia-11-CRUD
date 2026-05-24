@@ -10,10 +10,7 @@ export const createTaskRow = (task) => {
     row.appendChild(nameCell);
 
     const statusCell = document.createElement("td");
-    const statusCheckbox = document.createElement("input");
-    statusCheckbox.type = "checkbox";
-    statusCheckbox.checked = task.completed;
-    statusCell.appendChild(statusCheckbox);
+    statusCell.textContent = task.completed ? "Completada" : "En progreso";
     row.appendChild(statusCell);
 
     return row;
