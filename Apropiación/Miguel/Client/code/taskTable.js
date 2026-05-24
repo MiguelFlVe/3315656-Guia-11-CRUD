@@ -1,14 +1,10 @@
 import { dom } from "./appContext.js";
 
-import {
-    updateTask,
-    deleteTask
-} from "./data.js";
-
 // Generación de una fila en la tabla de tareas
 export const createTaskRow = (task) => {
     const row = document.createElement("tr");
     row.setAttribute("data-task-id", task.id);
+    row.task = task;
 
     const nameCell = document.createElement("td");
     nameCell.textContent = task.title;
@@ -18,24 +14,7 @@ export const createTaskRow = (task) => {
     const statusButton = document.createElement("button");
     statusButton.type = "button";
     statusButton.textContent = task.completed ? "Completada" : "En progreso";
-    statusButton.addEventListener("click", async () => {
-        const message = task.completed
-            ? "¿Marcar esta tarea como \"En progreso\"?"
-            : "¿Marcar esta tarea como \"Completada\"?";
-
-        if (!window.confirm(message)) {
-            return;
-        }
-
-        const updatedTask = await updateTask(task.id, {
-            ...task,
-            completed: !task.completed
-        });
-        if (updatedTask) {
-            task.completed = updatedTask.completed;
-            statusButton.textContent = task.completed ? "Completada" : "En progreso";
-        }
-    });
+    statusButton.className = "status-button";
     statusCell.appendChild(statusButton);
     row.appendChild(statusCell);
 
@@ -43,20 +22,7 @@ export const createTaskRow = (task) => {
     const deleteButton = document.createElement("button");
     deleteButton.type = "button";
     deleteButton.textContent = "Eliminar";
-    deleteButton.addEventListener("click", async () => {
-        if (!window.confirm("¿Eliminar esta tarea?")) {
-            return;
-        }
-
-        const deleted = await deleteTask(task.id);
-        if (deleted) {
-            row.remove();
-            if (dom.taskTableBody.children.length === 0) {
-                dom.taskTableBody.appendChild(dom.emptyStateRow);
-                dom.emptyStateRow.style.display = "table-row";
-            }
-        }
-    });
+    deleteButton.className = "delete-button";
     actionCell.appendChild(deleteButton);
     row.appendChild(actionCell);
 

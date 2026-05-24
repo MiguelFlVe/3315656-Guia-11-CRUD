@@ -3,7 +3,11 @@ import {
     createTaskRow
 } from "./taskTable.js";
 
-import { createTask } from "./data.js";
+import {
+    createTask,
+    updateTask,
+    deleteTask
+} from "./data.js";
 
 import { dom } from "./appContext.js";
 
@@ -42,3 +46,37 @@ export const handleSaveTask = async (taskTitle) => {
     }
     return null;
 }
+
+export const handleStatusChange = async (task, statusButton) => {
+    const message = task.completed
+        ? "¿Marcar esta tarea como \"En progreso\"?"
+        : "¿Marcar esta tarea como \"Completada\"?";
+
+    if (!window.confirm(message)) {
+        return;
+    }
+
+    const updatedTask = await updateTask(task.id, {
+        ...task,
+        completed: !task.completed
+    });
+    if (updatedTask) {
+        task.completed = updatedTask.completed;
+        statusButton.textContent = task.completed ? "Completada" : "En progreso";
+    }
+};
+
+export const handleDeleteTask = async (task, row) => {
+    if (!window.confirm("¿Eliminar esta tarea?")) {
+        return;
+    }
+
+    const deleted = await deleteTask(task.id);
+    if (deleted) {
+        row.remove();
+        if (dom.taskTableBody.children.length === 0) {
+            dom.taskTableBody.appendChild(dom.emptyStateRow);
+            dom.emptyStateRow.style.display = "table-row";
+        }
+    }
+};

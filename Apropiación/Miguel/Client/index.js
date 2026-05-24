@@ -14,7 +14,9 @@ import {
 import {
     handleTaskInput,
     initializeTaskTable,
-    handleSaveTask
+    handleSaveTask,
+    handleStatusChange,
+    handleDeleteTask
 } from "./code/handler.js";
 
 import { fetchTasks } from "./code/data.js";
@@ -29,5 +31,7 @@ export {
     handleTaskInput,
     initializeTaskTable,
     handleSaveTask,
+    handleStatusChange,
+    handleDeleteTask,
     fetchTasks
 };

@@ -2,6 +2,8 @@ import {
     dom,
     initializeTaskTable,
     handleSaveTask,
+    handleStatusChange,
+    handleDeleteTask,
     fetchTasks
 } from "./index.js";
 
@@ -34,6 +36,23 @@ document.addEventListener("DOMContentLoaded", async () => {
                 await handleSaveTask(taskTitle);
                 dom.taskInput.value = "";
             }
+        }
+    });
+
+    // Delegación de eventos para botones de estado y eliminar
+    dom.taskTableBody.addEventListener("click", async (e) => {
+        const button = e.target.closest("button");
+        if (!button) return;
+
+        const row = button.closest("tr");
+        if (!row || !row.task) return;
+
+        if (button.classList.contains("status-button")) {
+            await handleStatusChange(row.task, button);
+        }
+
+        if (button.classList.contains("delete-button")) {
+            await handleDeleteTask(row.task, row);
         }
     });
 });
