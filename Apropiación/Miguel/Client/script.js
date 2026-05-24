@@ -1,6 +1,9 @@
-import { FALLBACK_TASKS, dom } from "./code/appContext.js";
-import { initializeTaskTable, handleSaveTask } from "./code/handler.js";
-import { fetchTasks } from "./code/data.js";
+import {
+    dom,
+    initializeTaskTable,
+    handleSaveTask,
+    fetchTasks
+} from "./index.js";
 
 // Ejecutar los handlers cuando se carga la página
 document.addEventListener("DOMContentLoaded", async () => {

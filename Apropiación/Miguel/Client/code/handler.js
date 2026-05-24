@@ -1,5 +1,10 @@
-import { renderTaskTable, createTaskRow } from "./taskTable.js";
+import {
+    renderTaskTable,
+    createTaskRow
+} from "./taskTable.js";
+
 import { createTask } from "./data.js";
+
 import { dom } from "./appContext.js";
 
 // Cuando se ingresa la tarea, se genera una fila en la tabla de tareas

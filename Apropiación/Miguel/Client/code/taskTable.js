@@ -1,5 +1,9 @@
 import { dom } from "./appContext.js";
-import { updateTask, deleteTask } from "./data.js";
+
+import {
+    updateTask,
+    deleteTask
+} from "./data.js";
 
 // Generación de una fila en la tabla de tareas
 export const createTaskRow = (task) => {
